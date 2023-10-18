@@ -1,0 +1,39 @@
+﻿@page "/tasker"
+@page "/seme"
+@using tasker.Models
+
+<h3>Tasker</h3>
+
+
+<div>
+    <input type="text" name="atazaBerria" id="atazaberria" @bind="atazaberria.TaskName" placeholder="gehitu ataza" />
+    <button @onclick="gehituAtaza">gehitu</button>
+</div>
+
+@if (atazazerrenda.Any())
+{
+   
+        @foreach (TaskModel task in atazazerrenda)
+        {
+            <tasker.Components.TaskComponent task1="task"></tasker.Components.TaskComponent>
+        }
+}
+else
+{
+    <p>No tasks available.</p>
+}
+
+
+@code {
+    private List<TaskModel> atazazerrenda = new List<TaskModel>();
+    private TaskModel atazaberria = new TaskModel();
+
+    private void gehituAtaza()
+    {
+        if (!string.IsNullOrWhiteSpace(atazaberria.TaskName))
+        {
+            atazazerrenda.Add(atazaberria);
+            atazaberria = new TaskModel();
+        }
+    }
+}

@@ -1,0 +1,23 @@
+﻿@page "/taskcomponent"
+@using tasker.Models
+
+<div>
+   
+    
+    
+    @if (task1.IsCompleted)
+    {
+        <input type="checkbox" id="@task1.Id" disabled checked />
+    }else
+    {
+        <input type="checkbox" id="@task1.Id" @bind=task1.IsCompleted/>
+    }
+    <label for="@task1.Id">@task1.TaskName</label>
+</div>
+
+
+@code {
+    [Parameter]
+    public TaskModel task1 { get; set; }
+
+}
